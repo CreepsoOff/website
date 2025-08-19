@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Github, ImageDown, Palette, MoveDiagonal, Download, Star, Users } from 'lucide-react';
+import { Github, ImageDown, Palette, MoveDiagonal, Download, Globe, Layers, Share2, Filter, Eye, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export function OverlayProTT() {
@@ -30,10 +30,37 @@ export function OverlayProTT() {
     }
   ];
 
-  const stats = [
-    { icon: Download, value: "10K+", label: "Downloads" },
-    { icon: Star, value: "4.9", label: "Rating" },
-    { icon: Users, value: "500+", label: "Active Users" }
+  const capabilities = [
+    { 
+      icon: Layers, 
+      title: "Multiple Overlays", 
+      description: "Run several overlays simultaneously for complex projects"
+    },
+    { 
+      icon: Share2, 
+      title: "Direct Sharing", 
+      description: "Share overlays instantly with friends and collaborators"
+    },
+    { 
+      icon: Filter, 
+      title: "Smart Color Matching", 
+      description: "Automatic alignment with wplace.live color palette"
+    },
+    { 
+      icon: Eye, 
+      title: "Dual Display Modes", 
+      description: "Switch between full overlay and precise dot mode"
+    },
+    { 
+      icon: Zap, 
+      title: "Real-time Processing", 
+      description: "Instant overlay updates with zero lag performance"
+    },
+    { 
+      icon: Globe, 
+      title: "Universal Compatibility", 
+      description: "Works seamlessly across all modern browsers"
+    }
   ];
 
   return (
@@ -156,11 +183,13 @@ export function OverlayProTT() {
           backdrop-filter: blur(15px);
           border: 1px solid rgba(120, 119, 198, 0.3);
           transition: all 0.3s ease;
+          text-align: left;
         }
 
         .stat-card:hover {
-          transform: scale(1.05);
+          transform: translateY(-5px);
           border-color: rgba(120, 119, 198, 0.5);
+          box-shadow: 0 15px 35px rgba(120, 119, 198, 0.2);
         }
 
         .download-button {
@@ -219,6 +248,9 @@ export function OverlayProTT() {
         {/* Hero Section */}
         <div className={`space-y-6 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <div className="animate-float">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <Globe className="h-16 w-16 text-blue-400 animate-pulse" />
+            </div>
             <h1 className="text-5xl md:text-7xl font-bold title-gradient mb-4">
               Overlay Pro TT
             </h1>
@@ -231,14 +263,21 @@ export function OverlayProTT() {
           </p>
         </div>
 
-        {/* Stats Section */}
-        <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl w-full ${isVisible ? 'animate-fade-in-scale' : 'opacity-0'}`}
+        {/* Product Capabilities Section */}
+        <div className={`max-w-6xl w-full ${isVisible ? 'animate-fade-in-scale' : 'opacity-0'}`}
              style={{ animationDelay: '0.4s' }}>
-          {stats.map((stat, index) => (
-            <div key={index} className="stat-card p-6 rounded-xl text-center animate-pulse-hover">
-              <stat.icon className="h-8 w-8 text-blue-400 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-white">{stat.value}</div>
-              <div className="text-blue-200 text-sm">{stat.label}</div>
+          <h2 className="text-3xl font-bold text-white text-center mb-8">
+            Powerful Features for <span className="text-blue-400">wplace.live</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {capabilities.map((capability, index) => (
+              <div key={index} className="stat-card p-6 rounded-xl animate-pulse-hover">
+                <capability.icon className="h-10 w-10 text-blue-400 mb-4" />
+                <h3 className="text-lg font-semibold text-white mb-2">{capability.title}</h3>
+                <p className="text-blue-200 text-sm leading-relaxed">{capability.description}</p>
+              </div>
+            ))}
+          </div>
             </div>
           ))}
         </div>
