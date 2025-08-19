@@ -1,26 +1,27 @@
-# Multi-stage Dockerfile to build and serve the Vite app
+# Étape 1 : Utilise une image Node.js comme base
+FROM node:18-alpine
 
-# Stage 1: build the application
-FROM node:18-alpine AS build
+# Étape 2 : Définit le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Install dependencies
+# Étape 3 : Copie le package.json et package-lock.json
 COPY package.json package-lock.json ./
-RUN npm ci
 
-# Copy source and build
+# Étape 4 : Installe les dépendances
+RUN npm install
+
+# Étape 5 : Copie le reste des fichiers de l'application
 COPY . .
+
+# Étape 6 : Construis l'application pour la production
 RUN npm run build
 
-# Stage 2: serve with a lightweight web server
-FROM nginx:alpine
+# Étape 7 : Utilise un serveur pour servir les fichiers de construction
+# Ajoute un serveur HTTP léger pour servir l'application, ici on utilise `serve`
+RUN npm install -g serve
 
-# Copy built assets from the previous stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Étape 8 : Expose le port 8084
+EXPOSE 8084
 
-# Expose port 80 for the web server
-EXPOSE 80
-
-# Run nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
-
+# Étape 9 : Commande pour démarrer l'application
+CMD ["serve", "-s", "dist", "-l", "8084"]
