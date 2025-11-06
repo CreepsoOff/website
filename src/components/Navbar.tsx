@@ -19,9 +19,9 @@ export function Navbar() {
             <Link to="/" onClick={close} className="hover:text-primary">
               Accueil
             </Link>
-            <Link to="/overlay-pro-tt" onClick={close} className="hover:text-primary">
+            <a href="https://install.creepso.com/" onClick={close} className="hover:text-primary">
               Overlay Pro TT
-            </Link>
+            </a>
             <Link to="/about" onClick={close} className="hover:text-primary">
               A propos
             </Link>
@@ -35,9 +35,9 @@ export function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/overlay-pro-tt" className="text-sm font-medium hover:text-primary">
+          <a href="https://install.creepso.com/" className="text-sm font-medium hover:text-primary">
             Overlay Pro TT
-          </Link>
+          </a>
         </li>
         <li>
           <Link to="/about" className="text-sm font-medium hover:text-primary">
