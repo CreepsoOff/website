@@ -1,6 +1,9 @@
+import { ParticlesBackground } from '@/components/ParticlesBackground';
+
 export function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 md:p-12">
+      <ParticlesBackground />
       <div className="max-w-3xl w-full space-y-8 text-center">
         <h1 className="text-6xl font-bold">Fabian</h1>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
